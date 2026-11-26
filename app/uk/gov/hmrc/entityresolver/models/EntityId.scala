@@ -1,0 +1,32 @@
+/*
+ * Copyright 2024 HM Revenue & Customs
+ *
+ */
+
+package uk.gov.hmrc.entityresolver.models
+
+import java.util.UUID
+
+import play.api.libs.json._
+
+case class EntityId(value: String) {
+  override def toString: String = value
+}
+
+object EntityId {
+
+  def generate(): EntityId = EntityId(UUID.randomUUID().toString)
+
+  private val read = new Reads[EntityId] {
+    override def reads(json: JsValue): JsResult[EntityId] = json match {
+      case JsString(s) => JsSuccess(EntityId(s))
+      case _           => JsError("No entityId")
+    }
+  }
+
+  private val write = new Writes[EntityId] {
+    override def writes(e: EntityId): JsValue = JsString(e.value)
+  }
+
+  implicit val formats: Format[EntityId] = Format(read, write)
+}

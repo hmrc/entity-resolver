@@ -1,0 +1,22 @@
+
+# DEPRECATED: use GET /entity-resolver?taxRegime=nino&taxId=<value>
+# This is called from citizen details
+GET        /entity-resolver/paye/:nino                                            uk.gov.hmrc.entityresolver.controllers.TaxIdResolver.byNino(nino: uk.gov.hmrc.domain.Nino)
+
+GET        /entity-resolver                                                       uk.gov.hmrc.entityresolver.controllers.EntityController.findEntity(query: uk.gov.hmrc.entityresolver.binders.GetEntityParamsBinder)
+GET        /regime/entity-resolver                                                uk.gov.hmrc.entityresolver.controllers.EntityController.findRegimeEntity()
+
+GET        /preferences/capture                                                   uk.gov.hmrc.entityresolver.controllers.PreferencesController.capture()
+POST       /preferences/confirm/:entityId/:itsa                                   uk.gov.hmrc.entityresolver.controllers.PreferencesController.confirm(entityId: uk.gov.hmrc.entityresolver.models.EntityId, itsa: uk.gov.hmrc.domain.HmrcMtdItsa)
+POST       /preferences/enrolment                                                 uk.gov.hmrc.entityresolver.controllers.PreferencesController.enrolment()
+POST       /preferences/process-itsa                                              uk.gov.hmrc.entityresolver.controllers.ItsaController.updateItsaId()
+
+GET        /preferences/checkAndDelete/:entityId/:identifier                      uk.gov.hmrc.entityresolver.controllers.PreferencesController.checkAndDelete(entityId: uk.gov.hmrc.entityresolver.models.EntityId, identifier: String)
+
+POST       /entity-resolver-admin/manual-opt-out/:regime/:id                      uk.gov.hmrc.entityresolver.controllers.ManualOptOutController.manualOptOut(regime: String, id: String)
+
+GET        /*path                                                                 uk.gov.hmrc.entityresolver.controllers.PathForwardingController.doGet(path)
+POST       /*path                                                                 uk.gov.hmrc.entityresolver.controllers.PathForwardingController.doPost(path)
+PUT        /*path                                                                 uk.gov.hmrc.entityresolver.controllers.PathForwardingController.doPut(path)
+
+
