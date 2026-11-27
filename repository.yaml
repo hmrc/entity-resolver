@@ -3,4 +3,3 @@ digital-service: Digital Contact
 description: Facilitates other eps microservices with NPS communications and receives alerts from NPS.
 type: service
 service-type: Backend
-test-repositories:
