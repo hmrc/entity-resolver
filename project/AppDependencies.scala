@@ -4,7 +4,7 @@ import sbt.{ Def, Test, * }
 private object AppDependencies {
   import play.sbt.PlayImport.*
 
-  val bootstrapVersion = "10.7.0"
+  val bootstrapVersion = "10.9.0"
   val hmrcMongoVersion = "2.14.0"
   val hmrcDomainVersion = "13.0.0"
 
