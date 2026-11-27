@@ -1,1 +1,5 @@
 repoVisibility: public_0C3F0CE3E6E6448FAD341E7BFA50FCD333E06A20CFF05FCACE61154DDBBADF71
+digital-service: Digital Contact
+description: Entity-resolver's purpose is to allow the introduction of Entity Identifiers (entity Ids) into the preferences microservice. It is effectively a proxy for the preference service.
+type: service
+service-type: Backend

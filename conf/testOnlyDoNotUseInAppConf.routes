@@ -1,0 +1,20 @@
+# IF THE MICRO-SERVICE DOES NOT NEED ANY TEST-ONLY END-POINTS (ALWAYS PREFERRED) DELETE THIS FILE.
+
+# !!!WARNING!!! This file MUST NOT be referenced in the "application.conf" file to avoid risk of rolling test routes in the production environment.
+# If you need test routes when running tests in CI make sure that the profile for this micro-service (used by service-manager) defines this router as parameter.
+# To do so add the following line to the micro-service profile: "-Dapplication.router=testOnlyDoNotUseInAppConf.Routes"
+# To start the micro-service locally using the test routes run the following command: "sbt run -Dhttp.router=testOnlyDoNotUseInAppConf.Routes"
+
+# Any test-only end-point must be defined here.
+# !!!WARNING!!! Every route defined in this file MUST be prefixed with "/test-only/". This is because NGINX is blocking every uri containing the string "test-only" in production.
+# Failing to follow this rule may result in test routes deployed in production.
+
+# Add all the application routes to the prod.routes file
+DELETE     /test-only/entity-resolver-admin/all               uk.gov.hmrc.entityresolver.controllers.testonly.AdminController.deleteAll()
+POST       /test-only/entity-resolver-admin/sa/:utr           uk.gov.hmrc.entityresolver.controllers.testonly.AdminController.entityIdForUtr(utr: SaUtr)
+DELETE     /test-only/entity-resolver-admin/sa/:utr           uk.gov.hmrc.entityresolver.controllers.testonly.AdminController.deletePreferenceByUtr(utr: SaUtr)
+POST       /test-only/entity-resolver-admin/paye/:nino        uk.gov.hmrc.entityresolver.controllers.testonly.AdminController.entityIdForNino(nino: Nino)
+DELETE     /test-only/entity-resolver-admin/paye/:nino        uk.gov.hmrc.entityresolver.controllers.testonly.AdminController.deletePreferenceByNino(nino: Nino)
+GET        /test-only/entity-resolver-admin/:entityId         uk.gov.hmrc.entityresolver.controllers.testonly.AdminController.validateEntityId(entityId: String)
+DELETE     /test-only/entity-resolver-admin/:entityId         uk.gov.hmrc.entityresolver.controllers.testonly.AdminController.deleteEntityRecord(entityId: String)
+->         /    prod.Routes
